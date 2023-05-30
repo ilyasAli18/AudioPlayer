@@ -83,4 +83,6 @@ def main():
       print("An audio is already running. Try again once the audio has finished or press ctrl + C to quit!".upper())
       print("-"*50,"\n")
       sys.exit()
-main()
+      
+if __name__ == '__main__':
+   main()
