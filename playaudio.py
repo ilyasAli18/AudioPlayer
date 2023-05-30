@@ -1,6 +1,7 @@
 from datetime import datetime
 import os, psutil,sys
 from platform import system
+
 system = system()
 
 dic = { "046":"Ahqaf",
@@ -12,6 +13,7 @@ dic = { "046":"Ahqaf",
        "013":"Ra'ad",
        "112":"Ikhlas"
         }
+
 # Check whether an audio is already running.
 def checkIfAudioIsRunning():
    processes = psutil.process_iter()
@@ -20,7 +22,7 @@ def checkIfAudioIsRunning():
          return True
    return False
 
-
+# Plays the audio based on user input
 def play():
    counter = 1; global dic; lst = []; T = "Do You To Play Audio? (Y/n): "
    print(T,end="")
@@ -75,7 +77,6 @@ def calculateTime(a,b):
    return ":".join(final)
 
 def main():
-   
    if not checkIfAudioIsRunning():
       play()
    else:
