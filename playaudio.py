@@ -71,7 +71,6 @@ def calculateTime(a,b):
    fss = (int(fs)-int(ss)) %60
    final = [str(fh),str(fm),str(fss)]
    if (int(final[2])+int(ss))%60==int(fs) and int(fm)== 1 :
-      print(True)
       return ("0:0:"+final[2])
    return ":".join(final)
 
