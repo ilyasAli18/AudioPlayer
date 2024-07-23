@@ -18,8 +18,12 @@ dic = { "046":"Ahqaf",
 def checkIfAudioIsRunning():
    processes = psutil.process_iter()
    for proc in processes:
-      if proc.name() == "afplay" and proc.is_running():
-         return True
+      print(proc.name() if proc.is_running() and "audio" in proc.name().lower() else None)
+      if proc.is_running():
+         if proc.name() == "afplay":
+            return True
+         elif proc.name() == "audiodg.exe":
+            return True
    return False
 
 # Plays the audio based on user input
@@ -46,14 +50,10 @@ def play():
          if system=="Darwin":
             os.system("afplay audios/"+file+".mp3")
             os.system("open -a /System/Applications/Utilities/Terminal.app")
-         """
-          -------------------------
-          MAY NOT WORK FOR WINDOWS
-          ------------------------
-          elif system == "Window":
-             import windsound
-             winsound.playSound("audios/"+file+".mp3",winsound.SND_FILENAME)
-         """     
+         elif system == "Windows":
+             from audioplayer import AudioPlayer
+             AudioPlayer(f"audios/{file}.mp3").play(block=True)
+          
          hrs = datetime.now().strftime("%H:%M:%S")
          print("Time it took to play",dic[file]+":",calculateTime(hrs,hours)+".")
          print(hrs+": ----------------------------")
